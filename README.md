@@ -32,7 +32,7 @@ In your app `build.gradle`:
 ```
 dependencies {
         ...
-        implementation 'com.github.wardellbagby:CachingSequence:0.1.0'
+        implementation 'com.github.wardellbagby:CachingSequence:0.1.1'
 }
 ```
 

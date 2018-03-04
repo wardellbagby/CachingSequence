@@ -1,5 +1,6 @@
 package com.wardellbagby.cachingsequence
 
+import com.wardellbagby.concatiterator.plus
 import java.util.stream.DoubleStream
 import java.util.stream.IntStream
 import java.util.stream.LongStream
@@ -23,9 +24,7 @@ open class CachingSequence<out T>(sequence: Sequence<T>) : Sequence<T> {
     private val yieldedItems: MutableList<T> = mutableListOf()
     private val cachingIterator = CachingIterator(sequence.iterator())
 
-    override fun iterator(): Iterator<T> {
-        return cachingIterator
-    }
+    override fun iterator(): Iterator<T> = yieldedItems.iterator() + cachingIterator
 
     operator fun get(index: Int): T {
         if (index < 0) throw IndexOutOfBoundsException("Index $index is not in range of this sequence.")

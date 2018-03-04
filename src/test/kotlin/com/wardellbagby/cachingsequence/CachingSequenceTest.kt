@@ -2,10 +2,11 @@ package com.wardellbagby.cachingsequence
 
 import org.junit.Assert.assertEquals
 import org.junit.Assert.fail
+import org.junit.Test
 
 class CachingSequenceTest {
 
-    @org.junit.Test
+    @Test
     fun testEmptyCachingSequence() {
         val cachingSequence = emptyCachingSequence<Int>()
         cachingSequence.forEach {
@@ -13,7 +14,7 @@ class CachingSequenceTest {
         }
     }
 
-    @org.junit.Test
+    @Test
     fun testCachingSequence() {
         val cachingSequence = (0..1000).asCachingSequence()
         val iterator = cachingSequence.iterator()
@@ -33,7 +34,7 @@ class CachingSequenceTest {
         assertEquals(cachingSequence[11], 11)
     }
 
-    @org.junit.Test(expected = IndexOutOfBoundsException::class)
+    @Test(expected = IndexOutOfBoundsException::class)
     fun testLessThanZero() {
         val cachingSequence = CachingSequence {
             (0..1000).iterator()
@@ -41,11 +42,26 @@ class CachingSequenceTest {
         cachingSequence[-1]
     }
 
-    @org.junit.Test(expected = IndexOutOfBoundsException::class)
+    @Test(expected = IndexOutOfBoundsException::class)
     fun testGreaterThanMax() {
         val cachingSequence = CachingSequence {
             (0..1000).iterator()
         }
         cachingSequence[1001]
+    }
+
+    @Test
+    fun testMultipleIterator() {
+        var fail = false
+        val cachingSequence: CachingSequence<Int> = buildCachingSequence {
+            if (fail) {
+                fail("Called the builder caching sequence twice.")
+            }
+            (0..1000).forEach { yield(it) }
+        }
+        val expected = cachingSequence.iterator().asSequence().take(10).toList()
+        fail = true
+        val actual = cachingSequence.iterator().asSequence().take(10).toList()
+        assertEquals(expected, actual)
     }
 }
