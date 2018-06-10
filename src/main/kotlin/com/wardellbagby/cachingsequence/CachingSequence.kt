@@ -97,72 +97,63 @@ fun <T> java.util.Enumeration<T>.asCachingSequence(): CachingSequence<T> = this.
  * Creates a [CachingSequence] instance that wraps the original array returning its elements when being iterated.
  */
 fun <T> Array<out T>.asCachingSequence(): CachingSequence<T> {
-    if (isEmpty()) return emptyCachingSequence()
-    return CachingSequence(asCachingSequence())
+    return this.iterator().asCachingSequence()
 }
 
 /**
  * Creates a [CachingSequence] instance that wraps the original array returning its elements when being iterated.
  */
-fun ByteArray.asCachingSequence(): Sequence<Byte> {
-    if (isEmpty()) return emptySequence()
-    return Sequence { this.iterator() }
+fun ByteArray.asCachingSequence(): CachingSequence<Byte> {
+    return this.iterator().asCachingSequence()
 }
 
 /**
  * Creates a [CachingSequence] instance that wraps the original array returning its elements when being iterated.
  */
-fun ShortArray.asCachingSequence(): Sequence<Short> {
-    if (isEmpty()) return emptySequence()
-    return Sequence { this.iterator() }
+fun ShortArray.asCachingSequence(): CachingSequence<Short> {
+    return this.iterator().asCachingSequence()
 }
 
 /**
  * Creates a [CachingSequence] instance that wraps the original array returning its elements when being iterated.
  */
-fun IntArray.asCachingSequence(): Sequence<Int> {
-    if (isEmpty()) return emptySequence()
-    return Sequence { this.iterator() }
+fun IntArray.asCachingSequence(): CachingSequence<Int> {
+    return this.iterator().asCachingSequence()
 }
 
 /**
  * Creates a [CachingSequence] instance that wraps the original array returning its elements when being iterated.
  */
-fun LongArray.asCachingSequence(): Sequence<Long> {
-    if (isEmpty()) return emptySequence()
-    return Sequence { this.iterator() }
+fun LongArray.asCachingSequence(): CachingSequence<Long> {
+    return this.iterator().asCachingSequence()
 }
 
 /**
  * Creates a [CachingSequence] instance that wraps the original array returning its elements when being iterated.
  */
-fun FloatArray.asCachingSequence(): Sequence<Float> {
-    if (isEmpty()) return emptySequence()
-    return Sequence { this.iterator() }
+fun FloatArray.asCachingSequence(): CachingSequence<Float> {
+    return this.iterator().asCachingSequence()
 }
 
 /**
  * Creates a [CachingSequence] instance that wraps the original array returning its elements when being iterated.
  */
-fun DoubleArray.asCachingSequence(): Sequence<Double> {
-    if (isEmpty()) return emptySequence()
-    return Sequence { this.iterator() }
+fun DoubleArray.asCachingSequence(): CachingSequence<Double> {
+    return this.iterator().asCachingSequence()
 }
 
 /**
  * Creates a [CachingSequence] instance that wraps the original array returning its elements when being iterated.
  */
-fun BooleanArray.asCachingSequence(): Sequence<Boolean> {
-    if (isEmpty()) return emptySequence()
-    return Sequence { this.iterator() }
+fun BooleanArray.asCachingSequence(): CachingSequence<Boolean> {
+    return this.iterator().asCachingSequence()
 }
 
 /**
  * Creates a [CachingSequence] instance that wraps the original array returning its elements when being iterated.
  */
-fun CharArray.asCachingSequence(): Sequence<Char> {
-    if (isEmpty()) return emptySequence()
-    return Sequence { this.iterator() }
+fun CharArray.asCachingSequence(): CachingSequence<Char> {
+    return this.iterator().asCachingSequence()
 }
 
 /**
